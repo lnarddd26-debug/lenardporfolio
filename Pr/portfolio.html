@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Duinog, Lenard D. Portfolio</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    scroll-behavior: smooth;
+    background: #0a0a18;
+  }
+  a { color: inherit; text-decoration: none; }
+  section { padding: 4rem 2rem; position: relative; z-index: 1; }
+
+  /* Floating shapes */
+  .floating-shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.2;
+    animation: floatShape 15s infinite linear;
+    z-index: 0;
+  }
+  @keyframes floatShape {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-30px) rotate(180deg); }
+    100% { transform: translateY(0) rotate(360deg); }
+  }
+
+  /* Header */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: #0a0a18cc;
+    backdrop-filter: blur(5px);
+    border-bottom: 1px solid #222;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo { font-weight: 700; font-size: 1.4rem; color: #6a75ff; }
+  nav ul { list-style: none; display: flex; gap: 1.5rem; margin: 0; padding: 0; }
+  nav ul li { font-weight: 500; font-size: 0.95rem; transition: 0.3s; }
+  nav ul li:hover { color: #00f0ff; }
+
+
+  .hero {
+    text-align: left;
+    padding: 8rem 2rem 6rem 2rem;
+    max-width: 700px;
+    margin: auto;
+    background: linear-gradient(135deg, #0a0a18, #1a1a2e);
+    border-radius: 12px;
+    box-shadow: 0 0 50px #6a75ff33;
+    overflow: hidden;
+  }
+  .hero h1 { font-size: 3rem; font-weight: 700; position: relative; z-index: 1; }
+  .hero h1 .last-name { color: #00f0ff; }
+  .hero p { color: #ccc; font-size: 1.2rem; margin-bottom: 2rem; position: relative; z-index: 1; }
+  .hero .buttons { display: flex; gap: 1rem; position: relative; z-index: 1; }
+
+  /* Buttons */
+  button {
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+    border-radius: 30px;
+    padding: 0.7rem 1.8rem;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 0 6px transparent;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  .btn-primary { background: linear-gradient(90deg, #6a75ff, #00f0ff); animation: glowPulse 3s ease-in-out infinite; }
+  .btn-primary:hover { animation-play-state: paused; background: linear-gradient(90deg, #4e57d9, #00c8ff); box-shadow: 0 0 20px #6a75ff, 0 0 40px #00f0ff; transform: scale(1.05); }
+  .btn-secondary { background: transparent; border: 2px solid #6a75ff; color: #6a75ff; animation: glowPulse 4s ease-in-out infinite; box-shadow: 0 0 6px #6a75ff; }
+  .btn-secondary:hover { animation-play-state: paused; background: #6a75ff; color: #0a0a18; box-shadow: 0 0 20px #6a75ff, 0 0 40px #00f0ff; transform: scale(1.05); }
+  @keyframes glowPulse { 0%,100% { box-shadow: 0 0 8px #6a75ff, 0 0 16px #00f0ff; } 50% { box-shadow: 0 0 12px #ff71ce, 0 0 24px #6a75ff; } }
+
+  /* About */
+  #about { 
+    max-width: 900px; 
+    margin: auto; 
+    display: flex; 
+    gap: 2rem; 
+    flex-wrap: wrap; 
+    align-items: center; 
+    background: #121125; 
+    border-radius: 12px; 
+    padding: 3rem 2rem;
+    box-shadow: 0 0 30px #00000066;
+    position: relative;
+    overflow: hidden;
+  }
+  #about img { width: 280px; border-radius: 12px; object-fit: cover; border: 2px solid #6a75ff; }
+  #about .about-text { color: #ddd; max-width: 500px; }
+  #about h2 { font-size: 2rem; margin-bottom: 1rem; color: #00f0ff; }
+  #about p { margin-bottom: 1rem; line-height: 1.6; color: #ccc; }
+
+  /* Skills */
+  #skills { max-width: 900px; margin: 4rem auto 2rem; display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; }
+  .skill-category { background: #121125; padding: 1.5rem 2rem; border-radius: 12px; width: 280px; transition: transform 0.3s, box-shadow 0.3s, border 0.3s; border: 1px solid transparent; }
+  .skill-category:hover { transform: translateY(-5px); box-shadow: 0 0 30px #6a75ff55; border: 1px solid #00f0ff55; }
+  .skill-category h3 { color: #ec4899; margin-bottom: 1rem; font-weight: 700; }
+  .skill { margin-bottom: 1rem; }
+  .skill-name { font-size: 0.9rem; margin-bottom: 0.3rem; color: #ddd; }
+  .skill-bar { height: 6px; background: #333; border-radius: 3px; overflow: hidden; }
+  .skill-level { height: 100%; background: linear-gradient(90deg, #6a75ff, #00f0ff); border-radius: 3px; transition: width 1s ease; }
+
+  /* Projects */
+  #projects { max-width: 900px; margin: 5rem auto 3rem; padding: 0 2rem; }
+  #projects h2 { text-align: center; font-weight: 700; font-size: 2.5rem; margin-bottom: 3rem; color: #00f0ff; }
+  .project-cards { display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; }
+  .project-card { background: #121125; border-radius: 12px; width: 300px; overflow: hidden; box-shadow: 0 0 12px #33005544; transition: transform 0.3s, box-shadow 0.3s, border 0.3s; border: 1px solid transparent; }
+  .project-card:hover { transform: translateY(-5px); box-shadow: 0 0 30px #6a75ff55; border: 1px solid #00f0ff55; }
+  .project-card img { width: 100%; height: 180px; object-fit: cover; display: block; }
+  .project-info { padding: 1rem 1.5rem 2rem 1.5rem; }
+  .project-info h3 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 700; color: #6a75ff; }
+  .project-info p { margin: 0; color: #ccc; font-size: 0.9rem; }
+
+  /* Contact */
+  #contact { max-width: 900px; margin: 5rem auto 5rem auto; padding: 0 2rem; color: #ddd; }
+  #contact h2 { font-weight: 700; font-size: 2.5rem; margin-bottom: 2rem; color: #00f0ff; text-align: center; }
+  form { display: flex; flex-direction: column; gap: 1.5rem; max-width: 600px; margin: auto; }
+  input, textarea { padding: 0.8rem 1rem; border-radius: 8px; border: none; background: #222; color: white; font-size: 1rem; resize: vertical; }
+  input::placeholder, textarea::placeholder { color: #999; }
+  .submit-btn { background: linear-gradient(90deg, #6a75ff, #00f0ff); border: none; padding: 1rem 1.8rem; color: white; font-weight: 600; border-radius: 30px; box-shadow: 0 0 8px #6a75ff; transition: transform 0.3s ease; animation: glowPulse 3s ease-in-out infinite; }
+  .submit-btn:hover { animation-play-state: paused; transform: scale(1.05); }
+
+  /* Floating Sidebar */
+  .social-sidebar { position: fixed; top: 40%; left: 0; display: flex; flex-direction: column; gap: 1rem; padding: 0.5rem; z-index: 200; }
+  .social-sidebar a { width: 44px; height: 44px; font-size: 1.6rem; background: #1a1a2e; box-shadow: 0 0 12px #00000044; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: white; transition: all 0.3s ease; }
+  .social-sidebar a:hover { box-shadow: 0 0 20px #6a75ff; }
+
+</style>
+</head>
+<body>
+
+<!-- Floating shapes -->
+<div class="floating-shape" style="width:100px;height:100px;background:#6a75ff;top:20%;left:10%;"></div>
+<div class="floating-shape" style="width:60px;height:60px;background:#00f0ff;top:50%;left:70%;"></div>
+<div class="floating-shape" style="width:120px;height:120px;background:#ff71ce;top:70%;left:30%;"></div>
+
+<header>
+  <div class="logo">Lenard <span style="color:#00f0ff">Duinog</span></div>
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <h1>Lenard <span class="last-name">Duinog</span></h1>
+  <p>Professional UI/UX Designer & Web Developer crafting modern, responsive, and interactive digital experiences.</p>
+  <div class="buttons">
+    <button class="btn-primary" onclick="downloadCV()"><i class="fas fa-download"></i> Download CV</button>
+    <button class="btn-secondary" onclick="scrollToContact()">Contact Me</button>
+  </div>
+</section>
+
+<section id="about">
+  <img src="unnamed.jpg" alt="Lenard Duinog" />
+  <div class="about-text">
+    <h2>About Me ➔</h2>
+    <p>I am a results-driven web developer with a passion for creating elegant and functional interfaces. I specialize in bridging the gap between design and development, ensuring intuitive and high-performing digital products.</p>
+    <p>My focus is clean, modern UI design, responsive layouts, and seamless user experience. I thrive in collaborative projects and constantly explore new technologies to deliver premium web experiences.</p>
+    <button class="btn-primary" onclick="scrollToContact()">Get In Touch</button>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="skill-category">
+    <h3>Frontend</h3>
+    <div class="skill"><div class="skill-name">HTML</div><div class="skill-bar"><div class="skill-level" style="width:90%"></div></div></div>
+    <div class="skill"><div class="skill-name">CSS</div><div class="skill-bar"><div class="skill-level" style="width:85%"></div></div></div>
+    <div class="skill"><div class="skill-name">JavaScript</div><div class="skill-bar"><div class="skill-level" style="width:75%"></div></div></div>
+    <div class="skill"><div class="skill-name">React</div><div class="skill-bar"><div class="skill-level" style="width:65%"></div></div></div>
+  </div>
+  <div class="skill-category">
+    <h3>Design</h3>
+    <div class="skill"><div class="skill-name">Figma</div><div class="skill-bar"><div class="skill-level" style="width:80%"></div></div></div>
+    <div class="skill"><div class="skill-name">UI/UX</div><div class="skill-bar"><div class="skill-level" style="width:70%"></div></div></div>
+    <div class="skill"><div class="skill-name">Bootstrap</div><div class="skill-bar"><div class="skill-level" style="width:70%"></div></div></div>
+  </div>
+  <div class="skill-category">
+    <h3>Backend</h3>
+    <div class="skill"><div class="skill-name">Node.js</div><div class="skill-bar"><div class="skill-level" style="width:55%"></div></div></div>
+    <div class="skill"><div class="skill-name">Python</div><div class="skill-bar"><div class="skill-level" style="width:60%"></div></div></div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2>My Projects</h2>
+  <div class="project-cards">
+    <div class="project-card">
+      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80" alt="Project 1" />
+      <div class="project-info">
+        <h3>Project One</h3>
+        <p>A sleek dashboard design for modern web apps with real-time analytics and responsive UI.</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <img src="https://images.unsplash.com/photo-1517433456452-f9633a875f6f?auto=format&fit=crop&w=600&q=80" alt="Project 2" />
+      <div class="project-info">
+        <h3>Project Two</h3>
+        <p>Custom-built e-commerce platform with seamless user experience and scalable architecture.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact Me</h2>
+  <form onsubmit="submitForm(event)">
+    <input type="text" name="name" placeholder="Your Name" required />
+    <input type="email" name="email" placeholder="Your Email" required />
+    <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+    <button type="submit" class="submit-btn">Send Message</button>
+  </form>
+</section>
+
+<!-- Floating Sidebar -->
+<div class="social-sidebar" aria-label="Social media links">
+  <a href="https://github.com/" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+  <a href="https://linkedin.com/" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+  <a href="https://instagram.com/" aria-label="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+  <a href="https://twitter.com/" aria-label="Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+  <a href="https://facebook.com/" aria-label="Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+  <a href="https://youtube.com/" aria-label="YouTube" target="_blank"><i class="fab fa-youtube"></i></a>
+</div>
+
+<script>
+function downloadCV() { window.open('https://example.com/lenard-Duinog-cv.pdf', '_blank'); }
+function scrollToContact() { document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }); }
+function submitForm(event) { event.preventDefault(); alert('Thank you! I will get back to you soon.'); event.target.reset(); }
+</script>
+</body>
+</html>
